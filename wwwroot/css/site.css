@@ -1,0 +1,23 @@
+.row {
+    display: block;
+    vertical-align: top;
+}
+
+label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+input {
+    vertical-align: top;
+}
+
+.LeftColumn {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.RightColumn {
+    display: inline-block;
+    vertical-align: top;
+}

@@ -1,0 +1,54 @@
+Create project : 
+	Yo CandyMan RESTauranter
+	cd REASTauranter
+
+	dotnet add package MySql.Data.EntityFrameworkCore -v 7.0.7-*
+	dotnet restore
+
+    Create {{ProjectName}}Context.cs file   (In the Models folder?)
+	Contents: 
+		using Microsoft.EntityFrameworkCore;
+	
+		namespace  {{ProjectName}}.Models 
+		{
+			public class  {{ProjectName}}Context : DbContext
+			{
+				// base() calls the parent class' constructor passing the "options" parameter along
+				public  {{ProjectName}}Context(DbContextOptions< {{ProjectName}}Context> options) : base(options) { }
+			}
+		}
+
+	Modify Startup.cs
+		Add usings statements:
+			using YourNamespace.Models;
+			using MySQL.Data.EntityFrameworkCore;
+			using MySQL.Data.EntityFrameworkCore.Extensions;
+		Modify ConfigurationServices
+			public void ConfigureServices(IServiceCollection services)
+			Add new line: 
+				services.AddDbContext<{{ProjectName}}Context>(options => options.UseMySQL(Configuration["DBInfo:ConnectionString"]));
+
+	Modify a Controller: 
+		Add the following to the controller: 
+			using Microsoft.EntityFrameworkCore;
+			using {{ProjectName}}.Models;
+			using System.Linq;
+			// Other usings
+			
+			public class __Name__Controller : Controller
+			{
+				private {{ProjectName}}Context _context;
+			
+				public __Name__Controller({{ProjectName}}Context context)
+				{
+					_context = context;
+				}
+			
+				[HttpGet]
+				[Route("")]
+				public IActionResult Index()
+				{
+					List<  ** Person **   > AllUsers = _context.Users.ToList();
+					// Other code
+				}
+			}
