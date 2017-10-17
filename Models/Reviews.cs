@@ -6,6 +6,7 @@ namespace RESTauranter.Models
 {
 	public class Reviews : BaseEntity
 	{
+		[Required]
 		public int id { get; set; }
 
 		[Required]
@@ -25,5 +26,10 @@ namespace RESTauranter.Models
 		[Required]
 		[Range(1,5)]
 		public int Stars { get; set; }
+
+		public bool isValidDate()
+		{
+			return DateOfVisit <= DateTime.Now;
+		}
 	}
 }
