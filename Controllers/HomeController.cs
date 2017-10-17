@@ -31,6 +31,7 @@ namespace RESTauranter.Controllers
 		public IActionResult Reviews()
 		{
 			List<Reviews> AllReviews = _context.Reviews.ToList();
+			ViewBag.AllReviews = AllReviews;
 			return View();
 		}
 
@@ -43,8 +44,8 @@ namespace RESTauranter.Controllers
 			{
 				if (newReview.isValidDate())
 				{
-					// Add to database 
-					
+					_context.Add(newReview);
+					_context.SaveChanges();
 					return RedirectToAction("Reviews");
 				}
 				else

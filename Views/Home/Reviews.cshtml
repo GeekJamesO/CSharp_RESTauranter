@@ -1,4 +1,11 @@
 @{
     ViewData["Title"] = "Reviews";
+
+    foreach (var rvw in ViewBag.AllReviews)
+    {        
+        <h5>Review for: @rvw.RestaurantName      @rvw.Stars star</h5>
+        <h6>Reviewer: @rvw.ReviewerName,  @rvw.DateOfVisit</h6>
+        <p>@rvw.ReviewText</p>
+        <hr>
+    }
 }
-<h1>Default Blank Page~</h1>
